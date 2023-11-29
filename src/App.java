@@ -3,46 +3,6 @@ import java.util.*;
 
 public class App {
 
-    // read from Question.txt file
-    public static List<String> getQuestionsFromTxt(String filePath) {
-        List<String> lines = new ArrayList<>();
-
-        try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
-            String line;
-            while ((line = br.readLine()) != null) {
-                // Add each line to the ArrayList
-                lines.add(line);
-            }
-        } catch (IOException e) {
-            System.out.println("error: " + e.getMessage());
-        }
-        return lines;
-    }
-
-    // read from index.csv file
-    public static HashMap<Integer, String> getIndex() {
-        HashMap<Integer, String> lines = new HashMap<>();
-
-        try (BufferedReader br = new BufferedReader(new FileReader("res/index.csv"))) {
-            java.lang.String line;
-            while ((line = br.readLine()) != null) {
-                // Add each line to the ArrayList
-                java.lang.String[] temp = line.split(", ");
-                lines.put(java.lang.Integer.parseInt(temp[0]), temp[1]);
-            }
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-        return lines;
-    }
-
-    public static void printIndex(HashMap<Integer, String> listOfProducts){
-        for (Map.Entry<Integer, String> entry : listOfProducts.entrySet()) {
-            Integer key = entry.getKey();
-            String value = entry.getValue();
-            System.out.println(key + ") " + value);
-        }
-    }
     public static void main(String[] args) {
 
         System.out.println("--------------------------------------------------------------");
@@ -67,16 +27,16 @@ public class App {
         System.out.println("--------------------------------------------------------------");
 
         // read index.csv and store index and name of the product in hashmap
-        HashMap<Integer, String> listOfProducts = getIndex();
+        HashMap<Integer, String> listOfProducts = FeedBackManager.getIndex();
 
         // read the list of questions for the feedback
-        List<String> Questions = getQuestionsFromTxt("res/Question.txt");
+        List<String> Questions = FeedBackManager.getQuestionsFromTxt("res/Question.txt");
 
         while (keepGoing) {
             System.out.println("Enter Product Id to give feedback ");
 
             // in menu print all the products from index
-            printIndex(listOfProducts);
+            FeedBackManager.printIndex(listOfProducts);
             choice = input.nextInt();
 
             // take the product of user's choice into consideration
@@ -119,7 +79,7 @@ public class App {
 
             System.out.println("Would you like to continue? : (1/0)  ");
             choice = input.nextInt();
-            if(choice == 0) keepGoing = false;
+            if (choice == 0) keepGoing = false;
         }
         input.close();
     }
