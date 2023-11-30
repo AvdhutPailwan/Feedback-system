@@ -23,6 +23,7 @@ public class App {
 
         System.out.print("Enter you Name: ");
         String userName = input.nextLine();
+        System.out.println("Hello "+userName+" please provide feedback :-) ");
 
         System.out.println("--------------------------------------------------------------");
 
@@ -77,7 +78,7 @@ public class App {
                 throw new RuntimeException(e);
             }
 
-            System.out.println("Would you like to continue? : (1/0)  ");
+            System.out.println("Would you like to continue? : (1/0)  where 1=yes and 0=no ");
             choice = input.nextInt();
             if (choice == 0) keepGoing = false;
         }

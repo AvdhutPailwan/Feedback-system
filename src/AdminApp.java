@@ -33,6 +33,8 @@ public class AdminApp {
                     break;
                 }
                 case 2: {
+                    HashMap<Integer, String> data = FeedBackManager.getIndex();
+                    FeedBackManager.printIndex(data);
                     System.out.print("Enter Product Id: ");
                     int userChoice = input.nextInt();
                     displaySelectedFeedbackThread = new DisplaySelectedFeedbackThread(userChoice);
@@ -40,6 +42,8 @@ public class AdminApp {
                     break;
                 }
                 case 3: {
+                    HashMap<Integer, String> data = FeedBackManager.getIndex();
+                    FeedBackManager.printIndex(data);
                     System.out.print("Enter Product Id: ");
                     int userChoice = input.nextInt();
                     calculateAverageRatingThread = new CalculateAverageRatingThread(userChoice);
@@ -52,6 +56,9 @@ public class AdminApp {
             }
 
 
+            System.out.println("Would you like to continue? : (1/0) where 1=yes and 0=no  ");
+            choice = input.nextInt();
+            if (choice == 0) keepGoing = false;
         }
 
 
